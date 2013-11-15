@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    paperclip-remote (0.7.0)
+    paperclip-remote (0.7.1)
       paperclip (>= 3.0.0)
 
 GEM
