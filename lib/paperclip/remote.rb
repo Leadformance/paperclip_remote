@@ -40,7 +40,7 @@ module Paperclip::Remote
     end
 
     before_validation do |record|
-      url = record.send(:"#{name}_remote_url")
+      url = instance_variable_get(:"@#{name}_remote_url")
       break unless url.present?
 
       begin
