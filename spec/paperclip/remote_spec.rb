@@ -14,12 +14,10 @@ describe Paperclip::Remote do
   subject { User.new(photo_remote_url: IMAGE_URL) }
 
   it 'should have remote URL accessor' do
-    subject.photo_remote_url.should be_instance_of(URI::HTTP)
-    subject.photo_remote_url.to_s.should == IMAGE_URL
+    subject.photo_remote_url.should == IMAGE_URL
 
     subject.photo_remote_url = "http://example.com"
-    subject.photo_remote_url.should be_instance_of(URI::HTTP)
-    subject.photo_remote_url.to_s.should == "http://example.com"
+    subject.photo_remote_url.should == "http://example.com"
 
     subject.photo_remote_url = ""
     subject.photo_remote_url.should be_nil

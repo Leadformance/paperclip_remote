@@ -26,11 +26,17 @@ module Paperclip::Remote
     original = has_attached_file_without_remote(name, options)
     return original unless attachment_definitions[name][:remote]
 
-    attr_reader   :"#{name}_remote_url"
     define_method :"#{name}_remote_url=" do |string|
       url = URI(string.presence) rescue nil
       url = nil unless URI::HTTP === url
       instance_variable_set(:"@#{name}_remote_url", url)
+    end
+
+    define_method :"#{name}_remote_url" do
+      remote_url = instance_variable_get(:"@#{name}_remote_url")
+      return remote_url.to_s if remote_url.present?
+
+      self.try(:"#{name}").try(:url) if !self.new_record?
     end
 
     before_validation do |record|
