@@ -56,6 +56,7 @@ module Paperclip::Remote
         end
       rescue OpenURI::HTTPError
         record.errors.add(:"#{name}_remote_url", :unreachable)
+        record.send(:"#{name}_remote_url=", url.to_s)
       end
     end
 

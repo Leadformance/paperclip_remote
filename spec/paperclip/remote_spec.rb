@@ -63,6 +63,7 @@ describe Paperclip::Remote do
     req.should have_been_made
 
     subject.errors.should be_present
+    subject.photo_remote_url.should be_present
   end
 
 end
